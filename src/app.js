@@ -63,6 +63,27 @@ function searchCity(city) {
   axios.get(url).then(showWeather);
 }
 
+function displayForecast() {
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="weather-forecast">
+        <div class="weather-forecast-day">${day}</div>
+        <div class="weather-forecast-icon">☁️</div>
+        <div class="forecast-temperature">
+          <div class="high">15°</div>
+          <div class="low">11°</div>
+        </div>
+      </div>`;
+  });
+
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let form = document.querySelector("#search-city-form");
 form.addEventListener("submit", submitSearch);
 
@@ -71,3 +92,5 @@ searchCity("Johannesburg");
 let currentDate = new Date();
 let date = document.querySelector(".currentDay");
 date.innerHTML = formatDate(currentDate);
+
+displayForecast();
